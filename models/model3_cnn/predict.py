@@ -19,10 +19,9 @@ OUTPUT_FILE = TEST_DATA_DIR / "model3_results.csv"
 def load_model():
     """Load your trained CNN model from saved_model/.
 
-    Typical approach:
-        import torch
-        model = torch.load(MODEL_PATH / "model.pth")
-        model.eval()
+    TensorFlow / Keras:
+        import tensorflow as tf
+        model = tf.keras.models.load_model(MODEL_PATH / "model.keras")
     """
     # TODO: Load your saved model
     raise NotImplementedError("Load your trained model here")
@@ -31,14 +30,17 @@ def load_model():
 def load_and_preprocess_images(image_dir):
     """Load images from the test_data/ image folder and apply transforms.
 
-    Typical approach:
-        from torchvision import transforms
-        transform = transforms.Compose([
-            transforms.Resize((224, 224)),
-            transforms.ToTensor(),
-            transforms.Normalize(mean=[0.485, 0.456, 0.406],
-                                 std=[0.229, 0.224, 0.225]),
-        ])
+    Example using Keras:
+        from tensorflow.keras.preprocessing.image import load_img, img_to_array
+        import numpy as np
+
+        images, ids = [], []
+        for img_path in sorted(Path(image_dir).glob("*.png")):
+            img = load_img(img_path, target_size=(224, 224))
+            img_array = img_to_array(img) / 255.0
+            images.append(img_array)
+            ids.append(img_path.name)
+        return np.array(images), ids
     """
     # TODO: Load and preprocess images
     raise NotImplementedError("Load and preprocess images here")

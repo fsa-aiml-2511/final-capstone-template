@@ -19,15 +19,9 @@ OUTPUT_FILE = TEST_DATA_DIR / "model2_results.csv"
 def load_model():
     """Load your trained model from saved_model/.
 
-    Typical approaches:
-        # PyTorch
-        import torch
-        model = torch.load(MODEL_PATH / "model.pth")
-        model.eval()
-
-        # TensorFlow / Keras
-        from tensorflow import keras
-        model = keras.models.load_model(MODEL_PATH / "model.h5")
+    TensorFlow / Keras:
+        import tensorflow as tf
+        model = tf.keras.models.load_model(MODEL_PATH / "model.keras")
     """
     # TODO: Load your saved model
     raise NotImplementedError("Load your trained model here")
